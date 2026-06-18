@@ -41,9 +41,9 @@ function validateFirstName() {
         firstName.style.borderColor = "red";
         error.textContent = "First name is required";
         return false;
-    } else if (value.length < 2) {
+    } else if (value.length <3) {
         firstName.style.borderColor = "red";
-        error.textContent = "First name must be at least 2 characters";
+        error.textContent = "First name must be at least 3 characters";
         return false;
     }
     else if (!nameRegex.test(value)) {
@@ -66,9 +66,9 @@ function validateSurname() {
         surname.style.borderColor = "red";
         error.textContent = "Surname is required";
         return false;
-    } else if (value.length < 2) {
+    } else if (value.length < 3) {
         surname.style.borderColor = "red";
-        error.textContent = "Surname must be at least 2 characters";
+        error.textContent = "Surname must be at least 3 characters";
         return false;
     } else if (!nameRegex.test(value)) {
         surname.style.borderColor = "red";
