@@ -9,6 +9,7 @@ const subject = document.getElementById("subject");
 const message = document.getElementById("message");
 const successMessage = document.getElementById("successMessage");
 const nameRegex = /^[A-Za-z]+$/;
+let toastTimeout = null;
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -20,12 +21,26 @@ form.addEventListener("submit", function (event) {
   const isMessageValid = validateMessage();
 
   if (isFirstNameValid && isSurnameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid) {
-    successMessage.textContent = "Your message has been sent successfully!";
-    successMessage.classList.add("show");
-    setTimeout(function() {
-    successMessage.classList.remove("show");
-    }, 3000);
-    form.reset(); // Clear the form after successful submission 
+        // show toast: reset any existing timeout so multiple submits behave
+        if (toastTimeout) {
+            clearTimeout(toastTimeout);
+            toastTimeout = null;
+            successMessage.classList.remove("show");
+        }
+
+        successMessage.textContent = "Your message has been sent successfully!";
+
+        // Force reflow so the transform animation restarts reliably
+        void successMessage.offsetWidth;
+        successMessage.classList.add("show");
+
+        // hide toast after 3s by removing the `show` class (it will slide back out)
+        toastTimeout = setTimeout(function() {
+            successMessage.classList.remove("show");
+            toastTimeout = null;
+        }, 3000);
+
+        form.reset(); // Clear the form after successful submission
   } else {
     successMessage.textContent = "";
   }
