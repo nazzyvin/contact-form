@@ -33,6 +33,12 @@ body {
   padding: 30px;
 }
 
+@supports (min-height: 100dvh) {
+  body {
+    min-height: 100dvh;
+  }
+}
+
 .container {
   width: 100%;
   max-width: 550px;
@@ -210,43 +216,45 @@ footer {
 /* Mobile phones */
 @media (max-width: 600px) {
   body {
-    padding: 20px 15px;
-    min-height: 100vh;
+    padding: 12px 15px;
+    min-height: 100dvh;
+    justify-content: center;
   }
 
   .container {
-    padding: 25px 18px;
+    padding: 18px;
     border-radius: 16px;
     max-width: 100%;
   }
 
   h1 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
+    font-size: 1.45rem;
+    margin-bottom: 18px;
   }
 
   .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   label {
     font-size: 0.9rem;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   input,
   textarea {
-    padding: 12px 14px;
-    font-size: 14px;
+    padding: 10px 12px;
+    font-size: 16px;
     border-radius: 10px;
+    border: 1px solid transparent;
   }
 
   textarea {
-    min-height: 100px;
+    min-height: 78px;
   }
 
   button {
-    padding: 14px;
+    padding: 12px;
     font-size: 15px;
     border-radius: 10px;
   }
@@ -268,32 +276,31 @@ footer {
   }
 
   footer {
-    font-size: 12px;
-    margin-top: 20px;
-    padding: 10px 15px;
+    font-size: 11px;
+    margin-top: 10px;
+    padding: 6px 15px;
   }
 }
 
 /* Small phones (under 400px) */
 @media (max-width: 400px) {
   .container {
-    padding: 20px 14px;
+    padding: 16px 14px;
     border-radius: 14px;
   }
 
   h1 {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
+    font-size: 1.35rem;
+    margin-bottom: 14px;
   }
 
   input,
   textarea {
-    padding: 10px 12px;
-    font-size: 13px;
+    padding: 9px 11px;
   }
 
   button {
-    padding: 12px;
+    padding: 11px;
     font-size: 14px;
   }
 }
