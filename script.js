@@ -8,6 +8,7 @@ const phone = document.getElementById("phone");
 const subject = document.getElementById("subject");
 const message = document.getElementById("message");
 const successMessage = document.getElementById("successMessage");
+const nameRegex = /^[A-Za-z]+$/;
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -34,11 +35,23 @@ form.addEventListener("submit", function (event) {
 function validateFirstName() {
     const value = firstName.value.trim();
     const error = document.getElementById("firstNameError");
+
+
     if (value === "") {
         firstName.style.borderColor = "red";
         error.textContent = "First name is required";
         return false;
-    } else {
+    } else if (value.length < 2) {
+        firstName.style.borderColor = "red";
+        error.textContent = "First name must be at least 2 characters";
+        return false;
+    }
+    else if (!nameRegex.test(value)) {
+        firstName.style.borderColor = "red";
+        error.textContent = "Only letters are allowed";
+        return false;
+    }
+    else {
         firstName.style.borderColor = "green";
         error.textContent = "";
         return true;
@@ -48,9 +61,18 @@ function validateFirstName() {
 function validateSurname() {
     const value = surname.value.trim();
     const error = document.getElementById("surnameError");
+
     if (value === "") {
         surname.style.borderColor = "red";
         error.textContent = "Surname is required";
+        return false;
+    } else if (value.length < 2) {
+        surname.style.borderColor = "red";
+        error.textContent = "Surname must be at least 2 characters";
+        return false;
+    } else if (!nameRegex.test(value)) {
+        surname.style.borderColor = "red";
+        error.textContent = "Only letters are allowed";
         return false;
     } else {
         surname.style.borderColor = "green";
@@ -61,7 +83,7 @@ function validateSurname() {
 
 function validateEmail() {
     const value = email.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
     const error = document.getElementById("emailError");
     if (value === "") {
         email.style.borderColor = "red";
